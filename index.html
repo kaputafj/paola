@@ -5,21 +5,32 @@
 <title>Paola Calc</title>
 
 <script>
-function checkforenter(e, form) {
-	var code = (e.keyCode ? e.keyCode : e.which);
-	if (code == 13) {
-		var temp = document.getElementById("total").value / 1.0635; 
-		temp = Math.round(temp * 100) / 100; 
-		document.getElementById("amount").value = temp;
+	function calculate(e, form) {
+		var code = (e.keyCode ? e.keyCode : e.which);
+		if (code == 13) {
+			var temp = document.getElementById("totalamount").value / (1 + (document.getElementById("tax").value / 100.0)); 
+			//temp = Math.round(temp * 100) / 100; 
+			document.getElementById("price").innerHTML = temp.toFixed(2);
+		}
 	}
-}
-</script>
+	</script>
 </head>
 
 	
 <body>
-Total: <input type=text id="total" onkeyup="checkforenter(event,this.form)"><br/>
-Tax: 6.35%<br/>
-Amount:<input type=text id="amount" readonly><br/>
+<table>
+	<tr>
+		<td>Total amount with tax:</td>
+		<td><input type="text" id="totalamount" onkeyup="calculate(event,this.form)"></td>
+	</tr>
+	<tr>
+		<td>Tax amount (%):</td>
+		<td><input type="text" id="tax" value="6.35" onkeyup="calculate(event,this.form)"></td>
+	</tr>
+	<tr>
+		<td>Pre-tax amount:</td>
+		<td id="price"></td>
+	</tr>
+</table>
 </body>
 </html>
