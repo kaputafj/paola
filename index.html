@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<title>Paola Calc</title>
+
+<script>
+function checkforenter(e, form) {
+	var code = (e.keyCode ? e.keyCode : e.which);
+	if (code == 13) {
+		var temp = document.getElementById("total").value / 1.0635; 
+		temp = Math.round(temp * 100) / 100; 
+		document.getElementById("amount").value = temp;
+	}
+}
+</script>
+</head>
+
+	
+<body>
+Total: <input type=text id="total" onkeyup="checkforenter(event,this.form)"><br/>
+Tax: 6.35%<br/>
+Amount:<input type=text id="amount" readonly><br/>
+</body>
+</html>
